@@ -1,0 +1,981 @@
+* {
+    font-family: 'Product Sans Medium Regular';
+}
+
+input,
+textarea,
+button {
+    font-family: 'Product Sans Medium Regular';
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+main {
+    flex: 1 0 auto;
+    overflow: hidden;
+}
+
+#tabWrapper {
+    padding: 0px;
+}
+
+#tabWrapper .tabs .tab a {
+    text-transform: none;
+    font-size: 18px;
+}
+
+.statContainer {
+    margin-bottom: 0px;
+}
+
+.progressCategory {
+    margin-top: 10px;
+}
+
+.currentlyReadingCategory {
+    margin-bottom: 28px;
+}
+
+.finishedReadingCategory {
+    margin-bottom: 28px;
+}
+
+.timeline {
+    position: relative;
+}
+
+.timeline .timeline-event {
+    position: relative;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.timeline .timeline-event .timeline-content {
+    position: relative;
+    width: calc(50% - 50px);
+}
+
+.timeline .timeline-event::before {
+    display: block;
+    content: "";
+    width: 2px;
+    height: calc(50% - 30px);
+    position: absolute;
+    background: #d2d2d2;
+    left: calc(50% - 1px);
+    top: 0;
+}
+
+.timeline .timeline-event::after {
+    display: block;
+    content: "";
+    width: 2px;
+    height: calc(50% - 30px);
+    position: absolute;
+    background: #d2d2d2;
+    left: calc(50% - 1px);
+    top: calc(50% + 30px);
+}
+
+.timeline .timeline-event:first-child::before {
+    display: none;
+}
+
+.timeline .timeline-event:last-child::after {
+    display: none;
+}
+
+.timeline .timeline-event:nth-child(even) .timeline-content {
+    margin-left: calc(50% + 50px);
+}
+
+.timeline .timeline-event:nth-child(odd) .timeline-content {
+    margin-left: 0;
+}
+
+.timeline .timeline-badge {
+    display: block;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: #d2d2d2;
+    top: calc(50% - 20px);
+    right: calc(50% - 20px);
+    border-radius: 50%;
+    text-align: center;
+    cursor: default;
+}
+
+.timeline .timeline-badge i {
+    font-size: 25px;
+    line-height: 40px;
+}
+
+@media (max-width: 600px) {
+    .timeline .timeline-event .timeline-content {
+        width: calc(100% - 70px);
+    }
+
+    .timeline .timeline-event::before {
+        left: 19px;
+    }
+
+    .timeline .timeline-event::after {
+        left: 19px;
+    }
+
+    .timeline .timeline-event:nth-child(even) .timeline-content {
+        margin-left: 70px;
+    }
+
+    .timeline .timeline-event:nth-child(odd) .timeline-content {
+        margin-left: 70px;
+    }
+
+    .timeline .timeline-badge {
+        left: 0;
+    }
+}
+
+.footerIcon {
+    vertical-align: middle;
+}
+
+.mouse {
+    font-size: 20px;
+}
+
+#contentWrapper {
+    margin-top: 20px;
+}
+
+#dashboard,
+#timeline,
+#tagManager,
+#settings {
+    margin-top: 20px;
+}
+
+.totalBooks {
+    background-color: #4285F4;
+}
+
+.filterTotalFinishedBooks {
+    background-color: #DB4437;
+}
+
+.startDays {
+    background-color: #0F9D58;
+}
+
+.settingTitle {
+    display: inline;
+    vertical-align: middle;
+}
+
+.settingSwitch {
+    margin-bottom: 20px;
+    vertical-align: middle;
+}
+
+#qod,
+#qodAuthor {
+    text-align: center;
+}
+
+.page-footer {
+    padding-top: 10px;
+}
+
+.toReadList,
+.currentlyReadingList,
+.finishedReadingList {
+    max-height: 300px;
+    overflow: auto;
+}
+
+.toReadBookTitle,
+.currentlyReadingBookTitle,
+.finishedReadingBookTitle,
+.tagName {
+    width: calc(80% - 50px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.isbnBtn,
+.editIsbnBtn {
+    margin-top: 25px;
+}
+
+.isbnRow {
+    margin-bottom: 0px;
+}
+
+.modal-content {
+    padding-bottom: 0px !important;
+}
+
+.modalActionContainer {
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+.newBookModalBtn {
+    width: 80%;
+    margin-top: 10px;
+}
+
+.newBookBtn,
+.editBookSubmitBtn,
+.newTagSubmitBtn,
+.editCurrentlyReadingNotesBtn,
+.editFinishedReadingNotesBtn {
+    margin-right: 10px !important;
+}
+
+.cancel {
+    margin-left: 10px !important;
+}
+
+.emptyListContainer {
+    margin-top: 30px;
+    transition: all 0.5s;
+}
+
+.emptyTagManagerListContainer {
+    width: 500px;
+    margin: 0 auto;
+}
+
+.emptyListContainer:hover {
+    filter: grayscale(80%);
+}
+
+.emptyTagManagerListContainer {
+    max-width: 500px;
+    transition: all 0.5s;
+    margin: 0 auto;
+}
+
+.emptyTagManagerListContainer:hover {
+    filter: grayscale(80%);
+}
+
+.emptyToReadImage {
+    max-width: 60%;
+}
+
+.emptyCurrentlyReadingImage {
+    max-width: 50%;
+}
+
+.emptyFinishedReadingImage {
+    max-width: 54%;
+}
+
+.emptyTagManagerListImage {
+    max-width: 60%;
+    margin-top: 40px;
+}
+
+.emptyNotFoundImage {
+    max-width: 50%;
+}
+
+.emptyListDescription {
+    margin-top: 30px;
+    font-size: 18px;
+}
+
+.deleteToReadBookBtn,
+.deleteCurrentlyReadingBookBtn,
+.deleteFinishedReadingBookBtn,
+.addToCurrentlyReadingBtn,
+.addToFinishedReadingBtn,
+.deleteTagBtn {
+    margin-right: -5px !important;
+    margin-left: 20px !important;
+}
+
+.deleteToReadBookToastBtn,
+.editBookBtn,
+.addToCurrentlyReadingToastBtn,
+.addToFinishedReadingToastBtn,
+.infoCurrentlyReadingBookBtn,
+.deleteCurrentlyReadingToastBtn,
+.infoFinishedReadingBookBtn,
+.deleteFinishedReadingToastBtn,
+.deleteTagToastBtn {
+    position: relative;
+    top: 0px;
+    transition: all 0.15s;
+}
+
+.deleteToReadBookToastBtn:hover,
+.editBookBtn:hover,
+.addToCurrentlyReadingToastBtn:hover,
+.addToFinishedReadingToastBtn:hover,
+.infoCurrentlyReadingBookBtn:hover,
+.deleteCurrentlyReadingToastBtn:hover,
+.infoFinishedReadingBookBtn:hover,
+.deleteFinishedReadingToastBtn:hover,
+.deleteTagToastBtn:hover {
+    cursor: pointer;
+    position: relative;
+    top: -2px;
+}
+
+.quoteWrapper {
+    min-height: 0px !important;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.5s, opacity 0.2s;
+}
+
+.quoteExpanded {
+    max-height: 100px;
+    opacity: 1;
+}
+
+.dateIcon {
+    vertical-align: bottom;
+    margin-right: 5px;
+}
+
+@keyframes bgcolorchange {
+    0% {
+        background-color: #ff1744;
+    }
+
+    25% {
+        background-color: #9500ae;
+    }
+
+    50% {
+        background-color: #3d5afe;
+    }
+
+    75% {
+        background-color: #14a37f;
+    }
+
+    100% {
+        background-color: #ff1744;
+    }
+}
+
+.rainbow {
+    animation: bgcolorchange 20s infinite;
+}
+
+.currentlyReadingListSearchContainer {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.finishedReadingListSearchContainer {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.toReadListSearchContainer {
+    margin-bottom: 0px !important;
+}
+
+.toReadListActionRow {
+    margin-bottom: 0px !important;
+}
+
+.infoTitle {
+    font-size: 25px;
+    font-family: 'Product Sans Medium Italic';
+}
+
+.infoAuthor {
+    font-size: 20px;
+}
+
+.infoTagsContainer {
+    margin-top: 20px;
+}
+
+.infoNotes {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.infoFinished {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.infoStarted {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.infoAdded {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.input-field input[type=text]:focus+label {
+    color: #f44336 !important;
+}
+
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid #f44336 !important;
+    box-shadow: 0 1px 0 0 #f44336 !important;
+}
+
+.input-field .prefix.active {
+    color: #f44336 !important;
+}
+
+.input-field input[type=text]:focus+label,
+.materialize-textarea:focus:not([readonly])+label {
+    color: #f44336 !important;
+}
+
+.input-field input[type=text]:focus,
+.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #f44336 !important;
+    box-shadow: 0 1px 0 0 #f44336 !important;
+}
+
+.chips.focus {
+    border-bottom: 1px solid #f44336 !important;
+    box-shadow: 0 1px 0 0 #f44336 !important;
+}
+
+.chip:focus {
+    background-color: #4caf50 !important;
+}
+
+::placeholder {
+    color: #616161;
+}
+
+.tagManagerSearchContainer {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 0px 30px;
+    border-radius: 40px;
+}
+
+.tagManagerList {
+    max-width: 400px;
+    margin: 20px auto 0px auto;
+    max-height: 400px;
+    overflow: auto;
+}
+
+.tagManagerAddTagBtnContainer {
+    margin-top: 20px;
+}
+
+.bookCountBadge {
+    margin-top: 2px !important;
+}
+
+.bookCountBadge.badge.new {
+    width: 75px;
+}
+
+.collection-item {
+    transition: all 0.1s;
+}
+
+.collection-item:hover {
+    background-color: #eeeeee;
+}
+
+.addBooksChips {
+    margin-bottom: 40px;
+}
+
+.addBooksChips .dropdown-content li>a,
+.dropdown-content li>span {
+    color: #2196f3 !important;
+}
+
+.timelineSearchContainer {
+    height: 40vh;
+    top: 15vh;
+    position: relative;
+}
+
+.timelineSearchWrapper {
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.timelineSearchWrapper .input-field {
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.timelineEventContainer {
+    height: 75vh;
+    overflow: auto;
+}
+
+.datepicker-date-display {
+    background-color: #2196f3;
+}
+
+.datepicker-table td.is-today {
+    color: #f44336;
+}
+
+.datepicker-table td.is-selected {
+    background-color: #2196f3;
+    color: white;
+    border-radius: 0%;
+}
+
+.month-prev:focus,
+.month-next:focus {
+    background-color: transparent;
+}
+
+.datepicker-controls .select-month input {
+    width: 90px;
+}
+
+.datepicker-cancel {
+    color: #f44336;
+}
+
+.datepicker-done {
+    color: #4caf50;
+}
+
+.timelineClearBtn {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.timelineSearchBtn {
+    display: inline-block;
+}
+
+.timelineActionContainer {
+    margin-top: 40px;
+}
+
+.datepicker-date-display .date-text {
+    font-size: 2.5rem;
+}
+
+.resetInfoContainer {
+    background-color: #f44336;
+    border-color: white;
+    border-radius: 3px;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    font-size: 17px;
+    margin-top: 20px;
+}
+
+.resetField {
+    width: 50%;
+    margin: 20px auto 30px auto;
+}
+
+.resetBtn {
+    margin-bottom: 40px;
+}
+
+.tabs .indicator {
+    background-color: #f44336;
+}
+
+.tabs .tab a {
+    color: rgba(244, 67, 54, 0.7);
+}
+
+.tabs .tab a:hover,
+.tabs .tab a.active {
+    background-color: transparent;
+    color: #f44336;
+}
+
+.tabs .tab a:focus,
+.tabs .tab a:focus.active {
+    background-color: rgba(244, 67, 54, 0.1);
+}
+
+.isbnCol {
+    padding: 0px !important;
+}
+
+.uploadBtn {
+    margin-top: 20px;
+}
+
+.helpContainer {
+    margin-top: 40px;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+        -webkit-transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(5px);
+        -webkit-transform: translateY(5px);
+    }
+
+    100% {
+        transform: translateY(0);
+        -webkit-transform: translateY(0);
+    }
+}
+
+.settingAsavari {
+    max-width: 100px;
+    vertical-align: middle;
+    margin-top: 15px;
+    animation: float 2s infinite ease;
+}
+
+.profileImage {
+    border-radius: 50%;
+    max-width: 100px;
+    margin-top: 5px;
+}
+
+.profileImage {
+    cursor: none;
+}
+
+.aboutContainer {
+    max-width: 500px;
+    margin: 40px auto 0px auto;
+}
+
+.aboutContainer .row {
+    margin-bottom: 0px;
+}
+
+.profileName {
+    font-size: 18px;
+}
+
+.profileEmail {
+    font-size: 18px;
+    margin-top: 10px;
+    transition: all 0.15s;
+}
+
+.profileEmail:hover {
+    cursor: pointer;
+    color: #2196F3 !important;
+}
+
+.socialIcon {
+    margin-top: 15px;
+    max-width: 35px;
+    vertical-align: middle;
+    position: relative;
+    top: 0px;
+    transition: all 0.15s;
+}
+
+.socialIcon:hover {
+    cursor: pointer;
+    position: relative;
+    top: -2px;
+}
+
+#helpModal .modal-content {
+    padding: 0px !important;
+}
+
+#helpModal {
+    max-width: 700px;
+    max-height: 700px;
+}
+
+#helpCarousel {
+    -webkit-user-select: none;
+    /* background: linear-gradient(90deg, rgba(244,67,54,1) 50%, rgba(255,152,0,1) 50%); */
+    background-color: rgba(244, 67, 54, 1);
+}
+
+#helpCarousel .carousel-item {
+    padding-top: 30px;
+}
+
+.indicator-item {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.indicator-item.active {
+    background-color: white !important;
+}
+
+.previousCarousel,
+.nextCarousel {
+    display: inline;
+}
+
+.previousCarousel {
+    margin-right: 20px;
+}
+
+.nextCarousel {
+    margin-left: 20px;
+}
+
+.previousCarousel .btn-floating:hover,
+.nextCarousel .btn-floating:hover {
+    cursor: pointer;
+}
+
+.previousCarousel .btn-floating:active,
+.nextCarousel .btn-floating:active {
+    transform: scale(0.9);
+}
+
+.previousCarousel i,
+.nextCarousel i {
+    text-align: center;
+    line-height: 30px;
+}
+
+.previousCarousel .btn-floating,
+.nextCarousel .btn-floating {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.welcomeTitle {
+    margin-bottom: 20px;
+}
+
+.welcomeHeading {
+    font-size: 25px;
+}
+
+.welcomeSubheading {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.stagesTitle {
+    font-size: 40px !important;
+    margin-bottom: 30px;
+}
+
+.stagesHeading {
+    font-size: 25px;
+    margin-bottom: 30px;
+}
+
+.stagesNote {
+    font-size: 20px;
+}
+
+.stageItem {
+    font-size: 20px;
+}
+
+.stageDetail {
+    font-size: 17px;
+    margin-top: 10px;
+}
+
+.tagsTitle {
+    font-size: 40px !important;
+    margin-bottom: 30px;
+}
+
+.tagsHeading {
+    font-size: 25px;
+    margin-bottom: 30px;
+}
+
+.tagsFeature {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.tagsHelpImg {
+    margin-top: 10px;
+    padding-right: 50px;
+}
+
+.migrationTitle {
+    font-size: 40px !important;
+    margin-bottom: 30px;
+}
+
+.migrationHeading {
+    font-size: 25px;
+    margin-bottom: 30px;
+}
+
+.migrationFeature {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.migrationHelpImg {
+    margin-top: -30px;
+}
+
+.helpEndTitle {
+    font-size: 40px !important;
+    margin-bottom: 30px;
+}
+
+.helpEndHeading {
+    font-size: 25px;
+    margin-bottom: 40px;
+}
+
+.helpAsavari {
+    max-width: 100px;
+    vertical-align: middle;
+    margin-top: 15px;
+    animation: float 2s infinite ease;
+    z-index: 2;
+}
+
+@keyframes sparkle {
+    0% {
+        background-position: 0;
+    }
+
+    40% {
+        background-position: -731px;
+    }
+
+    to {
+        background-position: -731px;
+    }
+}
+
+@keyframes pop {
+    0% {
+        background-position: 0;
+    }
+
+    40% {
+        background-position: -816px;
+    }
+
+    to {
+        background-position: -816px;
+    }
+}
+
+@keyframes light {
+    0% {
+        background-position: 0;
+    }
+
+    40% {
+        background-position: -600px;
+    }
+
+    to {
+        background-position: -600px;
+    }
+}
+
+@keyframes cross {
+    0% {
+        background-position: 0;
+    }
+
+    40% {
+        background-position: -600px;
+    }
+
+    to {
+        background-position: -600px;
+    }
+}
+
+.sprite {
+    position: absolute;
+    z-index: 1;
+}
+
+.sparkle {
+    left: 35%;
+    width: 43px;
+    height: 43px;
+    background-image: url(../assets/sparkle.png);
+    background-size: 774px 43px;
+    background-position: -731px;
+    animation: sparkle 1.5s steps(17, start) infinite forwards;
+}
+
+.pop {
+    left: 38%;
+    bottom: 55%;
+    width: 24px;
+    height: 24px;
+    background-image: url(../assets/pop.png);
+    background-size: 840px 24px;
+    background-position: -816px;
+    animation: pop 2.91666666667s steps(34, start) infinite forwards;
+}
+
+.light {
+    left: 60%;
+    top: 65%;
+    width: 20px;
+    height: 20px;
+    background-image: url(../assets/light.png);
+    background-size: 620px 20px;
+    background-position: -600px;
+    animation: light 2.58333333333s steps(30, start) infinite forwards;
+}
+
+.cross {
+    left: 60%;
+    bottom: 55%;
+    width: 25px;
+    height: 25px;
+    background-image: url(../assets/cross.png);
+    background-size: 625px 25px;
+    background-position: -600px;
+    animation: cross 2.083325s steps(23, start) infinite forwards;
+}
+
+.undoCurrentlyReadingNotesBtn, .undoFinishedReadingNotesBtn {
+    margin-top: 25px;
+    border-radius: 50%;
+    transition: transform .6s ease-in-out;
+}
+
+.undoCurrentlyReadingNotesBtn i, .undoFinishedReadingNotesBtn i {
+    font-size: 2rem !important;
+}
+
+.undoCurrentlyReadingNotesBtn:hover, .undoFinishedReadingNotesBtn:hover {
+    transform: rotate(-360deg);
+}
+
+#infoCurrentlyReadingInitialNotes, #infoFinishedReadingInitialNotes, #infoCurrentlyReadingUuid, #infoFinishedReadingUuid {
+    display: none;
+}

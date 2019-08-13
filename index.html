@@ -1,19 +1,704 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Hello World!</title>
-  </head>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Readit</title>
+  <link rel="stylesheet" href="./css/materialize.min.css">
+  <link rel="stylesheet" type="text/css" href="./css/material-icons.css">
+  <link rel="stylesheet" type="text/css" href="./css/font.css">
+  <link rel="stylesheet" type="text/css" href="./css/animate.min.css">
+  <link rel="stylesheet" type="text/css" href="./css/main.css">
+</head>
+
+<header id="titlebar">
+  <div id="drag-region"></div>
+</header>
+
+<main>
+
   <body>
-    <h1>Hello World!</h1>
-    <!-- All of the Node.js APIs are available in this renderer process. -->
-    We are using Node.js <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+    <nav>
+      <div class="nav-wrapper red">
+        <a class="brand-logo center">
+          <span class="obfuscate">Readit</span>
+        </a>
+      </div>
+    </nav>
+
+    <div id="helpModal" class="modal">
+      <div class="modal-content">
+        <div id="helpCarousel" class="carousel carousel-slider center">
+          <div class="carousel-fixed-item center">
+            <div class="previousCarousel">
+              <a class="btn-floating waves-effect white tooltipped scale-transition scale-out" data-position="left"
+                data-tooltip="Previous">
+                <i class="material-icons red-text">chevron_left</i>
+              </a>
+            </div>
+            <a class="modal-close btn blue waves-effect white-text">Skip</a>
+            <div class="nextCarousel">
+              <a class="btn-floating waves-effect white tooltipped scale-transition" data-position="right"
+                data-tooltip="Next">
+                <i class="material-icons red-text">chevron_right</i>
+              </a>
+            </div>
+          </div>
+          <div class="carousel-item red white-text" href="#one!">
+            <h1 class="welcomeTitle">Welcome to Readit!</h1>
+            <div class="white-text welcomeHeading">A simple reading log with a bunch of extra features.</div>
+            <div class="white-text welcomeSubheading">Made for avid readers by a casual reader. (seriously)</div>
+            <img src="assets/welcome.svg">
+          </div>
+          <div class="carousel-item green white-text" href="#two!">
+            <h2 class="stagesTitle">Stages</h2>
+            <div class="white-text stagesHeading">All books added to Readit will go through these phases.</div>
+            <div class="row">
+              <div class="col s4">
+                <div class="stageItem">Planning to Read</div>
+                <ul>
+                  <li class="stageDetail">Book details can be edited.</li>
+                  <li class="stageDetail">Tags can be edited through the edit modal.</li>
+                </ul>
+              </div>
+              <div class="col s4">
+                <div class="stageItem">Currently Reading</div>
+                <ul>
+                  <li class="stageDetail">Book details are read-only.</li>
+                  <li class="stageDetail">Tags can be edited through the tag manager.</li>
+                </ul>
+              </div>
+              <div class="col s4">
+                <div class="stageItem">Finished Reading</div>
+                <ul>
+                  <li class="stageDetail">Book details are read-only.</li>
+                  <li class="stageDetail">Tags can be edited through the tag manager.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="white-text stagesNote">All changes will be added to a timeline.</div>
+          </div>
+          <div class="carousel-item blue white-text" href="#three!">
+            <h2 class="tagsTitle">Tags</h2>
+            <div class="white-text tagsHeading">Organize books with your own categories.</div>
+            <div class="tagsFeature">No specific format required. You maintain the system.</div>
+            <div class="tagsFeature">Get tag suggestions using the ISBN of the book.</div>
+            <div class="tagsFeature">Add and remove tags from multiple books in one go.</div>
+            <img class="tagsHelpImg" src="assets/tags.svg">
+          </div>
+          <div class="carousel-item orange white-text" href="#four!">
+            <h2 class="migrationTitle">Migrating Data</h2>
+            <div class="white-text migrationHeading">Keep your progress with you!</div>
+            <div class="migrationFeature">Easily download all your data as one file.</div>
+            <div class="migrationFeature">Backups can be instantly uploaded to resume progress.</div>
+            <img class="migrationHelpImg" src="assets/migration.svg">
+          </div>
+          <div class="carousel-item red white-text" href="#five!">
+            <h2 class="helpEndTitle">You're all set!</h2>
+            <div class="white-text helpEndHeading">
+              If you want to view these slides again,
+              <div>poke Asavari in the Settings tab.</div>
+            </div>
+            <img class="helpAsavari" src="assets/asavari.svg">
+            <div class="sprite sparkle"></div>
+            <div class="sprite pop"></div>
+            <div class="sprite light"></div>
+            <div class="sprite cross"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="resetModal" class="modal white">
+      <div class="modal-content">
+        <h4 class="center">Are you sure?</h4>
+        <div class="resetInfoContainer hoverable">
+          <div class="resetWarning">This action <u>cannot</u> be undone. This will permanently delete all of your data
+            on Readit.</div>
+          <div class="resetInstruction">Please type in the name of this application to confirm.</div>
+        </div>
+
+        <form id="resetForm">
+          <div class="input-field resetField">
+            <input placeholder="Name" id="resetName" type="text" maxlength="6">
+          </div>
+
+          <div class="center">
+            <a class="waves-effect waves-light red btn resetBtn disabled">I understand the consequences, delete all
+              data</a>
+          </div>
+        </form>
+      </div>
+      <div class="white modalActionContainer">
+        <a href="#!" class="modal-close waves-effect waves-yellow btn-floating btn white tooltipped" data-position="top"
+          data-tooltip="Close">
+          <i class="material-icons red-text">clear</i>
+        </a>
+      </div>
+    </div>
+
+    <div id="newTagModal" class="modal white">
+      <div class="modal-content">
+        <h4 class="center">Add Tag</h4>
+        <div class="newTagWrapper container">
+          <form id="newTagForm">
+            <div class="input-field">
+              <input placeholder="Tag*" id="newTag" type="text" required>
+            </div>
+            <div class="input-field tooltipped" data-position="left" data-tooltip="Start typing book titles">
+              <div class="chips addBooksChips"></div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="white modalActionContainer">
+        <a href="#!" class="waves-effect waves-yellow btn-floating btn white tooltipped newTagSubmitBtn"
+          data-position="top" data-tooltip="Add Tag">
+          <i class="material-icons green-text">done</i>
+        </a>
+        <a href="#!" class="modal-close waves-effect waves-yellow btn-floating btn white tooltipped cancel"
+          data-position="top" data-tooltip="Close">
+          <i class="material-icons red-text">clear</i>
+        </a>
+      </div>
+    </div>
+
+    <div id="infoFinishedReadingBookModal" class="modal white">
+      <div class="modal-content">
+        <h4 class="center">About</h4>
+        <div class="infoFinishedReadingWrapper container center">
+          <script id="infoFinishedReadingTemplate" type="text/x-handlebars-template">
+            <div class="infoTitle">{{title}}</div>
+            <div class="infoAuthor grey-text text-darken-2">by {{author}}</div>
+            <div class="infoTagsContainer tooltipped" data-position="left" data-tooltip="Tags">
+              {{#each tags}}
+                <div class="chip green white-text hoverable">
+                  {{this}}
+                </div>
+              {{/each}}
+            </div>
+            <div class="row">
+              <div class="input-field col s10">
+                <textarea id="infoFinishedReadingNotes" placeholder="Notes" class="infoNotes materialize-textarea blue-text">{{notes}}</textarea>
+              </div>
+              <div class="col s2">
+                <a class="btn-flat undoFinishedReadingNotesBtn">
+                  <i class="material-icons red-text tooltipped" data-position="right" data-tooltip="Undo Edits">undo</i>
+                </a>
+              </div>
+            </div>
+            <div class="infoFinished">Finished Reading on: <span class="grey-text text-darken-2">{{dateFinished}}</span></div>
+            <div class="infoStarted">Started Reading on: <span class="grey-text text-darken-2">{{dateStarted}}</span></div>
+            <div class="infoAdded">Added to Readit on: <span class="grey-text text-darken-2">{{dateAdded}}</span></div>
+            <div id="infoFinishedReadingUuid">{{uuid}}</div>
+            <div id="infoFinishedReadingInitialNotes">{{notes}}</div>
+          </script>
+        </div>
+      </div>
+      <div class="white modalActionContainer">
+        <a href="#!"
+          class="waves-effect waves-yellow btn-floating btn white tooltipped editFinishedReadingNotesBtn disabled"
+          data-position="top" data-tooltip="Update Notes">
+          <i class="material-icons green-text">done</i>
+        </a>
+        <a href="#!" class="modal-close waves-effect waves-yellow btn-floating btn white tooltipped cancel"
+          data-position="top" data-tooltip="Close">
+          <i class="material-icons red-text">clear</i>
+        </a>
+      </div>
+    </div>
+
+    <div id="infoCurrentlyReadingBookModal" class="modal white">
+      <div class="modal-content">
+        <h4 class="center">About</h4>
+        <div class="infoCurrentlyReadingWrapper container center">
+          <script id="infoCurrentlyReadingTemplate" type="text/x-handlebars-template">
+            <div class="infoTitle">{{title}}</div>
+            <div class="infoAuthor grey-text text-darken-2">by {{author}}</div>
+            <div class="infoTagsContainer tooltipped" data-position="left" data-tooltip="Tags">
+              {{#each tags}}
+                <div class="chip green white-text hoverable">
+                  {{this}}
+                </div>
+              {{/each}}
+            </div>
+            <div class="row">
+              <div class="input-field col s11">
+                <textarea id="infoCurrentlyReadingNotes" placeholder="Notes" class="infoNotes materialize-textarea blue-text">{{notes}}</textarea>
+              </div>
+              <div class="col s1">
+                <a class="btn-flat undoCurrentlyReadingNotesBtn">
+                  <i class="material-icons red-text tooltipped" data-position="right" data-tooltip="Undo Edits">cached</i>
+                </a>
+              </div>
+            </div>
+            <div class="infoStarted">Started Reading on: <span class="grey-text text-darken-2">{{dateStarted}}</span></div>
+            <div class="infoAdded">Added to Readit on: <span class="grey-text text-darken-2">{{dateAdded}}</span></div>
+            <div id="infoCurrentlyReadingUuid">{{uuid}}</div>
+            <div id="infoCurrentlyReadingInitialNotes">{{notes}}</div>
+          </script>
+        </div>
+      </div>
+      <div class="white modalActionContainer">
+        <a href="#!"
+          class="waves-effect waves-yellow btn-floating btn white tooltipped editCurrentlyReadingNotesBtn disabled"
+          data-position="top" data-tooltip="Update Notes">
+          <i class="material-icons green-text">done</i>
+        </a>
+        <a href="#!" class="modal-close waves-effect waves-yellow btn-floating btn white tooltipped cancel"
+          data-position="top" data-tooltip="Close">
+          <i class="material-icons red-text">clear</i>
+        </a>
+      </div>
+    </div>
+
+    <div id="editBookModal" class="modal white">
+      <div class="modal-content">
+        <h4 class="center">Edit Book</h4>
+        <div class="row">
+          <form id="editBookForm">
+            <div class="input-field">
+              <input placeholder="Title*" id="editTitle" name="editTitle" type="text" required>
+            </div>
+            <div class="input-field">
+              <input placeholder="Author*" id="editAuthor" name="editAuthor" type="text" required>
+            </div>
+            <div class="input-field">
+              <select multiple id="editTags" name="editTags">
+                <option value="" disabled id="disabledEditTag">Use existing tags</option>
+                <script id="editTagSelectTemplate" type="text/x-handlebars-template">
+                  {{#each selectedTags}}
+                    <option value="{{this}}" selected>{{this}}</option>
+                  {{/each}}
+                  {{#each unselectedTags}}
+                    <option value="{{this}}">{{this}}</option>
+                  {{/each}}
+                </script>
+              </select>
+            </div>
+            <div class="chips editTagChips tooltipped" data-position="left"
+              data-tooltip="Separate multiple tags with Enter"></div>
+            <div class="row isbnRow">
+              <div class="input-field col s8 isbnCol">
+                <input placeholder="ISBN" id="editIsbn" name="editIsbn" type="text">
+              </div>
+              <div class="col s4 center">
+                <a class="waves-effect waves-light btn blue editIsbnBtn center-align tooltipped" data-position="top"
+                  data-tooltip="Populates Title, Author, and Tags">Populate using ISBN</a>
+              </div>
+            </div>
+            <div class="input-field">
+              <textarea placeholder="Notes" id="editNotes" class="materialize-textarea"></textarea>
+            </div>
+            <div class="input-field">
+              <input id="editBookUuid" name="uuid" type="text" hidden>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="white modalActionContainer">
+        <a href="#!" class="waves-effect waves-yellow btn-floating btn white tooltipped editBookSubmitBtn"
+          data-position="top" data-tooltip="Edit Book">
+          <i class="material-icons green-text">done</i>
+        </a>
+        <a href="#!" class="modal-close waves-effect waves-yellow btn-floating btn white tooltipped cancel"
+          data-position="top" data-tooltip="Cancel">
+          <i class="material-icons red-text">clear</i>
+        </a>
+      </div>
+    </div>
+
+    <div id="newBookModal" class="modal white">
+      <div class="modal-content">
+        <h4 class="center">Add Book</h4>
+        <div class="row">
+          <form id="addBookForm">
+            <div class="input-field">
+              <input placeholder="Title*" id="title" name="title" type="text" required>
+            </div>
+            <div class="input-field">
+              <input placeholder="Author*" id="author" name="author" type="text" required>
+            </div>
+            <div class="input-field">
+              <select multiple id="tags" name="tags">
+                <option value="" disabled id="disabledTag">Use existing tags</option>
+                <script id="tagSelectTemplate" type="text/x-handlebars-template">
+                  {{#each this}}
+                    <option value="{{this}}">{{this}}</option>
+                  {{/each}}
+                </script>
+              </select>
+            </div>
+            <div class="chips tagChips tooltipped" data-position="left"
+              data-tooltip="Separate multiple tags with Enter"></div>
+            <div class="row isbnRow">
+              <div class="input-field col s8 isbnCol">
+                <input placeholder="ISBN" id="isbn" name="isbn" type="text">
+              </div>
+              <div class="col s4 center">
+                <a class="waves-effect waves-light btn blue isbnBtn center-align tooltipped" data-position="top"
+                  data-tooltip="Populates Title, Author, and Tags">Populate using ISBN</a>
+              </div>
+            </div>
+            <div class="input-field">
+              <textarea placeholder="Notes" id="notes" class="materialize-textarea"></textarea>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="white modalActionContainer">
+        <a href="#!" class="waves-effect waves-yellow btn-floating btn white tooltipped newBookBtn" data-position="top"
+          data-tooltip="Add Book">
+          <i class="material-icons green-text">done</i>
+        </a>
+        <a href="#!" class="modal-close waves-effect waves-yellow btn-floating btn white tooltipped cancel"
+          data-position="top" data-tooltip="Cancel">
+          <i class="material-icons red-text">clear</i>
+        </a>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12" id="tabWrapper">
+        <ul class="tabs">
+          <li class="tab col s3 dashboardTab"><a class="active" href="#dashboard">Dashboard</a></li>
+          <li class="tab col s3 tagManagerTab"><a href="#tagManager">Tag Manager</a></li>
+          <li class="tab col s3 timelineTab"><a href="#timeline">Timeline</a></li>
+          <li class="tab col s3 settingsTab"><a href="#settings">Settings</a></li>
+        </ul>
+      </div>
+      <div id="dashboard" class="col s12">
+        <div class="row statContainer">
+          <div class="col s4">
+            <div class="card-panel totalBooks hoverable">
+              <h5 class="center white-text">Total Books Read: <span id="finishedBooksTotal"></span></h5>
+            </div>
+          </div>
+          <div class="col s4">
+            <div class="card-panel filterTotalFinishedBooks hoverable">
+              <ul id="filterTotalFinishedBooksDropdown" class="dropdown-content">
+                <li><a class="red-text" data-filter="week" href="#!">week</a></li>
+                <li><a class="red-text" data-filter="month" href="#!">month</a></li>
+                <li><a class="red-text" data-filter="year" href="#!">year</a></li>
+              </ul>
+              <h5 class="center white-text">
+                Books Read this
+
+                <a class="dropdown-trigger filterTotalFinishedBooksDropdownTrigger" href="#!"
+                  data-target="filterTotalFinishedBooksDropdown">
+                  <span class="yellow-text" id="thisText">
+                    week
+                  </span>
+                </a>
+                :
+                <span id="thisValue"></span>
+              </h5>
+            </div>
+          </div>
+          <div class="col s4">
+            <div class="card-panel startDays hoverable">
+              <h5 class="center white-text">Days since Start: <span id="daysSinceStart"></span></h5>
+            </div>
+          </div>
+        </div>
+        <div class="row bookContainer">
+          <div class="col s4">
+            <h4 class="center progressCategory">Read It.</h4>
+            <div class="center">
+              <div class="row valign-wrapper toReadListActionRow">
+                <div class="col s6">
+                  <div class="input-field toReadListSearchContainer">
+                    <i class="material-icons prefix">search</i>
+                    <input id="icon_prefix" class="toReadListSearchBox blue-text" type="text" placeholder="Search">
+                  </div>
+                </div>
+                <div class="col s6">
+                  <a class="waves-effect waves-light green btn white-text modal-trigger newBookModalBtn"
+                    href="#newBookModal">Add
+                    Book</a>
+                </div>
+              </div>
+            </div>
+            <div class="toReadListContainer">
+              <script id="toReadListTemplate" type="text/x-handlebars-template">
+                {{#if this.length}}
+                      <ul class="collection toReadList">
+                        {{#each this}}
+                          <li class="collection-item">
+                            <div>
+                              <span data-uuid="{{uuid}}" class="toReadBookTitle">{{title}}</span>
+                              <div class="secondary-content">
+                                  <a data-uuid="{{uuid}}" class="addToCurrentlyReadingToastBtn orange-text tooltipped" data-position="top" data-tooltip="Started Reading">
+                                      <i class="material-icons">arrow_forward</i>
+                                  </a>
+                                  <a data-uuid="{{uuid}}" class="editBookBtn tooltipped" data-position="top" data-tooltip="Edit Book">
+                                      <i class="material-icons">edit</i>
+                                  </a>
+                                  <a data-uuid="{{uuid}}" class="deleteToReadBookToastBtn red-text tooltipped" data-position="top" data-tooltip="Delete Book">
+                                      <i class="material-icons">delete</i>
+                                  </a>
+                              </div>
+                            </div>
+                          </li>
+                        {{/each}}  
+                      </ul>
+                    {{else}} 
+                      <div class="emptyListContainer center">
+                          <img class="emptyToReadImage" src="./assets/toRead.svg">
+                          <div class="emptyListDescription">Maybe you should fix this...</div>
+                      </div>
+                    {{/if}}                  
+                  </script>
+            </div>
+          </div>
+
+          <div class="col s4">
+            <h4 class="center progressCategory currentlyReadingCategory">Reading It.</h4>
+            <div class="input-field currentlyReadingListSearchContainer">
+              <i class="material-icons prefix">search</i>
+              <input id="icon_prefix" class="currentlyReadingListSearchBox blue-text" type="text" placeholder="Search">
+            </div>
+            <div class="currentlyReadingListContainer">
+              <script id="currentlyReadingListTemplate" type="text/x-handlebars-template">
+                {{#if this.length}}
+                  <ul class="collection currentlyReadingList">
+                    {{#each this}}
+                      <li class="collection-item">
+                        <div>
+                          <span data-uuid="{{uuid}}" class="currentlyReadingBookTitle">{{title}}</span>
+                          <div class="secondary-content">
+                              <a data-uuid="{{uuid}}" class="addToFinishedReadingToastBtn green-text tooltipped" data-position="top" data-tooltip="Finished Reading">
+                                  <i class="material-icons">done</i>
+                              </a>
+                              <a data-uuid="{{uuid}}" class="infoCurrentlyReadingBookBtn tooltipped" data-position="top" data-tooltip="About Book">
+                                  <i class="material-icons">info</i>
+                              </a>
+                              <a data-uuid="{{uuid}}" class="deleteCurrentlyReadingToastBtn red-text tooltipped" data-position="top" data-tooltip="Delete Book">
+                                  <i class="material-icons">delete</i>
+                              </a>
+                          </div>
+                        </div>
+                      </li>
+                    {{/each}}  
+                  </ul>
+                {{else}} 
+                  <div class="emptyListContainer center">
+                      <img class="emptyCurrentlyReadingImage" src="./assets/currentlyReading.svg">
+                      <div class="emptyListDescription">Do what this guy is doing.</div>
+                  </div>
+                {{/if}}                  
+              </script>
+            </div>
+          </div>
+          <div class="col s4">
+            <h4 class="center progressCategory finishedReadingCategory">Read It!</h4>
+            <div class="input-field finishedReadingListSearchContainer">
+              <i class="material-icons prefix">search</i>
+              <input id="icon_prefix" class="finishedReadingListSearchBox blue-text" type="text" placeholder="Search">
+            </div>
+            <div class="finishedReadingListContainer">
+              <script id="finishedReadingListTemplate" type="text/x-handlebars-template">
+                {{#if this.length}}
+                    <ul class="collection finishedReadingList">
+                      {{#each this}}
+                        <li class="collection-item">
+                          <div>
+                            <span data-uuid="{{uuid}}" class="finishedReadingBookTitle">{{title}}</span>
+                            <div class="secondary-content">
+                                <a data-uuid="{{uuid}}" class="infoFinishedReadingBookBtn tooltipped" data-position="top" data-tooltip="About Book">
+                                    <i class="material-icons">info</i>
+                                </a>
+                                <a data-uuid="{{uuid}}" class="deleteFinishedReadingToastBtn red-text tooltipped" data-position="top" data-tooltip="Delete Book">
+                                    <i class="material-icons">delete</i>
+                                </a>
+                            </div>
+                          </div>
+                        </li>
+                      {{/each}}  
+                    </ul>
+                  {{else}} 
+                    <div class="emptyListContainer center">
+                        <img class="emptyFinishedReadingImage" src="./assets/finishedReading.svg">
+                        <div class="emptyListDescription">Is this section supposed to be empty?</div>
+                    </div>
+                  {{/if}}                  
+                </script>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="timeline" class="col s12">
+        <div class="row">
+          <div class="col s4 timelineSearchContainer">
+            <div class="timelineSearchWrapper card-panel hoverable">
+              <h5 class="center timelineSearchTitle">Filter Timeline</h5>
+              <div class="input-field timelineSearchBox">
+                <i class="material-icons prefix">search</i>
+                <input id="icon_prefix" class="timelineSearch blue-text" type="text" placeholder="Search">
+              </div>
+
+              <input type="text" id="startDate" class="datepicker" placeholder="Start Date">
+              <input type="text" id="endDate" class="datepicker" placeholder="End Date">
+
+              <div class="center timelineActionContainer">
+                <a class="waves-effect waves-light btn timelineClearBtn red">Clear</a>
+                <a class="waves-effect waves-light btn timelineSearchBtn green">Search</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col s8 timelineEventContainer">
+            <div class="timeline">
+              <script id="timelineTemplate" type="text/x-handlebars-template">
+                {{#each this}}
+                  <div class="timeline-event">
+                    <div class="card timeline-content hoverable">
+                      <div class="card-content">
+                        <span class="card-title truncate">{{this.event}}</span>
+                          <p>
+                            <i class="material-icons dateIcon red-text">event</i>
+                            <span class="grey-text text-darken-2">{{this.date}}</span>
+                          </p>
+                      </div>
+                    </div>
+                    <div class="timeline-badge {{this.icon.color}} white-text hoverable">
+                      <i class="material-icons">{{this.icon.name}}</i>
+                    </div>
+                  </div>
+                {{/each}}
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="tagManager" class="col s12">
+        <div class="tagManagerSearchContainer z-depth-1 hoverable">
+          <div class="input-field">
+            <i class="material-icons prefix">search</i>
+            <input id="icon_prefix" class="tagManagerListSearchBox blue-text" type="text" placeholder="Search Tags">
+          </div>
+        </div>
+
+        <div class="tagManagerAddTagBtnContainer center">
+          <a class="waves-effect waves-light btn blue modal-trigger" href="#newTagModal">Add Tag</a>
+        </div>
+
+        <div class="tagManagerListContainer">
+          <script id="tagManagerListTemplate" type="text/x-handlebars-template">
+            {{#if this.length}}
+                <ul class="collection tagManagerList">
+                  {{#each this}}
+                    <li class="collection-item">
+                      <div>
+                        <span class="tagName">{{this.name}}</span>
+                        <div class="secondary-content">
+                          <span class="new badge bookCountBadge green tooltipped" data-position="right" data-tooltip="# of Books with this Tag" data-badge-caption="books">{{this.bookCount}}</span>
+                          <a data-tag="{{this.name}}" class="deleteTagToastBtn red-text tooltipped" data-position="top" data-tooltip="Delete Tag">
+                              <i class="material-icons">delete</i>
+                          </a>
+                        </div>
+                      </div>
+                    </li>
+                  {{/each}}  
+                </ul>
+              {{else}} 
+                <div class="emptyTagManagerListContainer center">
+                  <img class="emptyTagManagerListImage" src="./assets/emptyTagManagerList.svg">
+                  <div class="emptyListDescription">Your books are waiting to be tagged.</div>
+                </div>
+              {{/if}}           
+            </script>
+        </div>
+      </div>
+      <div id="settings" class="col s12 center">
+        <div class="container">
+          <div class="row changeDataWrapper">
+            <h5 class="settingHeader">Change Data</h5>
+            <div class="col s2"></div>
+            <div class="col s4">
+              <div class="file-field input-field">
+                <div class="btn orange">
+                  <span>Open</span>
+                  <input type="file" id="uploadFile" accept=".json">
+                </div>
+                <div class="file-path-wrapper">
+                  <input class="file-path" placeholder="Drop Here or Open" type="text">
+                </div>
+              </div>
+            </div>
+            <div class="col s4">
+              <a class="waves-effect waves-light btn blue uploadBtn">Upload Existing Data</a>
+            </div>
+            <div class="col s2"></div>
+          </div>
+
+          <div class="row">
+            <div class="col s2"></div>
+            <div class="col s4">
+              <a class="waves-effect waves-light btn green downloadBtn">Download Data</a>
+            </div>
+            <div class="col s4">
+              <a class="waves-effect waves-light btn red modal-trigger" href="#resetModal">Reset All Data</a>
+            </div>
+            <div class="col s2"></div>
+          </div>
+
+          <div class="helpContainer">
+            <h5 class="settingHeader">Help</h5>
+            <a class="modal-trigger tooltipped" data-position="right" data-tooltip="Click me for Help"
+              href="#helpModal">
+              <img class="settingAsavari" src="assets/asavari.svg">
+            </a>
+          </div>
+
+          <div class="aboutContainer card-panel">
+            <div class="row">
+              <div class="col s4">
+                <img class="profileImage hoverable tooltipped" data-position="left"
+                  data-tooltip="White is the new colorful" src="assets/profile.png">
+              </div>
+              <div class="col s8">
+                <div class="profileName">Soham Ashodiya</div>
+                <a href="mailto:sohamashodiya@gmail.com"
+                  class="profileEmail grey-text text-darken-2">sohamashodiya@gmail.com</a>
+                <div class="container">
+                  <div class="row">
+                    <div class="col s3">
+                      <img class="socialIcon linkedin tooltipped" data-position="bottom" data-tooltip="Linkedin"
+                        src="assets/linkedin.png">
+                    </div>
+                    <div class="col s3">
+                      <img class="socialIcon github tooltipped" data-position="bottom" data-tooltip="Github"
+                        src="assets/github.png">
+                    </div>
+                    <div class="col s3">
+                      <img class="socialIcon discord tooltipped" data-position="bottom" data-tooltip="Discord"
+                        src="assets/discord.png">
+                    </div>
+                    <div class="col s3">
+                      <img class="socialIcon twitter tooltipped" data-position="bottom" data-tooltip="Twitter"
+                        src="assets/twitter.png">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script>
-      // You can also require other files to run in this process
-      require('./renderer.js')
+      window.$ = window.jQuery = require('jquery');
+    </script>
+    <script src="./js/materialize.min.js"></script>
+    <script src="./js/handlebars.min.js"></script>
+    <script>
+      require('./renderer.js');
     </script>
   </body>
+</main>
+
+<footer class="page-footer red"></footer>
+
 </html>

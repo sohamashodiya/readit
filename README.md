@@ -1,45 +1,79 @@
-# electron-quick-start
+<h1 align="center">Readit</h1>
 
-**Clone and run for a quick way to see Electron in action.**
+<p align="center">A minimal reading list manager</p>
 
-This is a minimal Electron application based on the [Quick Start Guide](https://electronjs.org/docs/tutorial/quick-start) within the Electron documentation.
+<p align="center">
+  <img src="https://i.imgur.com/GnXXSbW.png" alt="image">
+</p>
 
-**Use this app along with the [Electron API Demos](https://electronjs.org/#get-started) app for API code examples to help you get started.**
+<h2 align="center">Features</h2>
 
-A basic Electron application needs just these files:
+* Books will go through three phases: Planning to Read (Read It.), Currently Reading, and Finished Reading (Read It!).
+  * Filter through each list by title, author, or tags.
+* All phase changes will be used to create a timeline.
+  * Filter through the timeline by keywords or by start/end date.
+* Can organize books using tags. 
+  * Can receive tag suggestions if ISBN is provided.
+* Data backups can easily be downloaded as one JSON file.
+  * Resume progress instantly through one click.
 
-- `package.json` - Points to the app's main file and lists its details and dependencies.
-- `main.js` - Starts the app and creates a browser window to render HTML. This is the app's **main process**.
-- `index.html` - A web page to render. This is the app's **renderer process**.
+<!-- <h2 align="center">Demonstration</h2>
 
-You can learn more about each of these components within the [Quick Start Guide](https://electronjs.org/docs/tutorial/quick-start).
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=HO3uTBC0Ilo">
+    <img src="https://i.imgur.com/CjAIDjN.png">
+  </a>
+</p> -->
 
-## To Use
+<h2 align="center">Screenshots</h2>
 
-To clone and run this repository you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
+<h3 align="center">Dashboard</h3>
 
-```bash
-# Clone this repository
-git clone https://github.com/electron/electron-quick-start
-# Go into the repository
-cd electron-quick-start
-# Install dependencies
-npm install
-# Run the app
-npm start
-```
+<p align="center">
+  <img width="70%" src="https://i.imgur.com/LiqOzcT.png">
+</p>
 
-Note: If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` from the command prompt.
+<h3 align="center">Tag Manager</h3>
 
-## Resources for Learning Electron
+<p align="center">
+  <img width="70%" src="https://i.imgur.com/tPvczue.png">
+</p>
 
-- [electronjs.org/docs](https://electronjs.org/docs) - all of Electron's documentation
-- [electronjs.org/community#boilerplates](https://electronjs.org/community#boilerplates) - sample starter apps created by the community
-- [electron/electron-quick-start](https://github.com/electron/electron-quick-start) - a very basic starter Electron app
-- [electron/simple-samples](https://github.com/electron/simple-samples) - small applications with ideas for taking them further
-- [electron/electron-api-demos](https://github.com/electron/electron-api-demos) - an Electron app that teaches you how to use Electron
-- [hokein/electron-sample-apps](https://github.com/hokein/electron-sample-apps) - small demo apps for the various Electron APIs
+<h3 align="center">Timeline</h3>
 
-## License
+<p align="center">
+  <img width="70%" src="https://i.imgur.com/963Iz4O.png">
+</p>
 
-[CC0 1.0 (Public Domain)](LICENSE.md)
+<h2 align="center">Installation</h2>
+
+1. Head over to the <a href="">releases page</a>.
+2. Download and run the installer for your OS. 
+
+<h2 align="center">Libraries</h2>
+
+<p align="center">
+  <a href="https://electronjs.org/">Electron</a>
+</p>
+<p align="center">
+  <a href="https://github.com/sindresorhus/electron-store">electron-store</a>
+</p>
+<p align="center">
+  <a href="http://handlebarsjs.com/">Handlebars</a>
+</p>
+<p align="center">
+  <a href="https://momentjs.com/">Moment</a>
+</p>
+<p align="center">
+  <a href="https://jquery.com/">jQuery</a>
+</p>
+<p align="center">
+  <a href="https://github.com/kelektiv/node-uuid">node-uuid</a>
+</p>
+<p align="center">
+  <a href="https://github.com/sindresorhus/electron-dl">electron-dl</a>
+</p>
+<p align="center">
+  <a href="https://github.com/palmerabollo/node-isbn">node-isbn</a>
+</p>
+

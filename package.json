@@ -1,22 +1,44 @@
 {
-  "name": "electron-quick-start",
-  "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "name": "readit",
+  "version": "2.0.0",
+  "description": "Minimal reading list manager",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "run-electron .",
+    "dist": "electron-builder"
   },
-  "repository": "https://github.com/electron/electron-quick-start",
-  "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
-  ],
-  "author": "GitHub",
+  "build": {
+    "appId": "com.sohamashodiya.readit",
+    "productName": "Readit",
+    "mac": {
+      "category": "public.app-category.productivity"
+    },
+    "nsis": {
+      "deleteAppDataOnUninstall": true,
+      "createDesktopShortcut": true,
+      "uninstallDisplayName": "Readit"
+    }
+  },
+  "repository": "",
+  "keywords": [],
+  "author": "Soham Ashodiya",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^4.1.4"
+    "electron": "^4.2.2",
+    "electron-builder": "^21.2.0",
+    "electron-reloader": "^0.3.0"
+  },
+  "dependencies": {
+    "electron-dl": "^1.14.0",
+    "electron-store": "^3.2.0",
+    "electron-util": "^0.11.0",
+    "isbn-validate": "^1.0.3",
+    "jquery": "^3.4.0",
+    "moment": "^2.24.0",
+    "node-isbn": "^1.4.0",
+    "npm": "^6.10.2",
+    "open": "^6.4.0",
+    "run-electron": "^1.0.0",
+    "uuid": "^3.3.2"
   }
 }
