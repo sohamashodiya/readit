@@ -47,7 +47,7 @@
 
 <h2 align="center">Installation</h2>
 
-1. Head over to the <a href="">releases page</a>.
+1. Head over to the <a href="https://github.com/soham1/readit/releases">releases page</a>.
 2. Download and run the installer for your OS. 
 
 <h2 align="center">Libraries</h2>
