@@ -30,19 +30,19 @@
 <h3 align="center">Dashboard</h3>
 
 <p align="center">
-  <img width="70%" src="https://i.imgur.com/LiqOzcT.png">
+  <img src="https://i.imgur.com/LiqOzcT.png">
 </p>
 
 <h3 align="center">Tag Manager</h3>
 
 <p align="center">
-  <img width="70%" src="https://i.imgur.com/tPvczue.png">
+  <img src="https://i.imgur.com/tPvczue.png">
 </p>
 
 <h3 align="center">Timeline</h3>
 
 <p align="center">
-  <img width="70%" src="https://i.imgur.com/963Iz4O.png">
+  <img src="https://i.imgur.com/963Iz4O.png">
 </p>
 
 <h2 align="center">Installation</h2>
