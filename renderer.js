@@ -2067,7 +2067,7 @@ function socialBtnHandlers() {
     });
 
     $('.github').click(function () {
-        open("https://github.com/soham1");
+        open("https://github.com/sohamashodiya");
     });
 
     $('.discord').click(function () {
