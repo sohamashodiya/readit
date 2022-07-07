@@ -34,7 +34,7 @@
     "electron-util": "^0.11.0",
     "isbn-validate": "^1.0.3",
     "jquery": "^3.4.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "node-isbn": "^1.4.0",
     "npm": "^6.10.2",
     "open": "^6.4.0",
